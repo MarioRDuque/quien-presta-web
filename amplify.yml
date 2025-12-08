@@ -8,7 +8,7 @@ frontend:
       commands:
         - npm run build -- --configuration production
   artifacts:
-    baseDirectory: dist/quien-presta-web   # <--- EXACTAMENTE COMO TU BUILD
+    baseDirectory: dist/quien-presta-web/browser   # <--- EXACTAMENTE COMO TU BUILD
     files:
       - '**/*'
   cache:
