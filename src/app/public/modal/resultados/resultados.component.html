@@ -1,0 +1,177 @@
+<div class="slide-2 w-slide">
+  <div class="slide-wrapper">
+    <div class="slide-content">
+      <div class="form-content large">
+        <div class="code-embed-2 w-embed w-script">
+          <div id="app-root" #appRoot>
+            <!-- CONFIRMATION SCREEN -->
+            @if (selected()) {
+            <section class="product-header7_product-details">
+              <div class="back-wrap">
+                <a href="#" (click)="volverAResultados(); $event.preventDefault()" class="breadcrumb-link">
+                  ← Volver a resultados</a>
+              </div>
+              <div class="margin-bottom margin-small">
+                <h1 class="heading-3">¡Selección confirmada!</h1>
+                <p class="paragraph-5">
+                  Tu solicitud ha sido procesada con éxito. La entidad recibirá tu información y pronto se pondrá en
+                  contacto contigo.<br>
+                </p>
+              </div>
+              <section class="summary-section">
+                <div class="summary-card">
+                  <h3 class="summary-title">📊 Resumen de la solicitud</h3>
+                  <div class="summary-grid">
+                    <div class="summary-item">
+                      <div class="summary-value">{{ confAmount() }}</div>
+                      <div class="summary-label">Monto aprobado</div>
+                    </div>
+                    <div class="summary-item">
+                      <div class="summary-value">{{ confTerm() }}</div>
+                      <div class="summary-label">Plazo seleccionado</div>
+                    </div>
+                    <div class="summary-item">
+                      <div class="summary-value">{{ confRate() }}</div>
+                      <div class="summary-label">Tasa aplicada</div>
+                    </div>
+                  </div>
+                  <div class="summary-entity">
+                    <p class="entity-label">Entidad seleccionada:</p>
+                    <div class="entity-box">
+                      <div class="co-badge">{{ selected()?.codigoentidad }}</div>
+                      <div class="entity-info">
+                        <h4 class="co-title">{{ selected()?.nombre }}</h4>
+                        <p class="co-sub">{{ selected()?.descripcion }}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="nextsteps-card">
+                  <h3 class="nextsteps-title">🚀 Próximos pasos</h3>
+                  <div class="steps-grid">
+                    @for (paso of selected()?.pasos; track $index) {
+                    <div class="step-item">
+                      <div class="step-number">{{paso.orden}}</div>
+                      <h4 class="step-title">{{paso.titulo}}</h4>
+                      <p class="step-text">{{paso.descripcion}}</p>
+                    </div>
+                    }
+                  </div>
+                </div>
+              </section>
+              <div class="actions">
+                @if(!cargando){
+                <button (click)="notificar()" class="button is-add-to-cart-button w-button">Continuar proceso</button>
+                } @else {
+                <button class="button is-add-to-cart-button w-button">Notificando Proceso</button>
+                }
+
+              </div>
+              <div class="margin-bottom margin-xxsmall">
+                <div class="text-weight-semibold text-size-medium">ℹ️ Información importante<br></div>
+              </div>
+              <p>
+                Este paso no implica la aprobación definitiva del préstamo.<br>
+                • Cada entidad validará tu información antes de otorgar el crédito.<br>
+                • Podrás recibir comunicaciones directas de la entidad seleccionada.<br>
+                • Si deseas modificar tu solicitud, puedes volver a ajustar el monto o plazo.
+              </p>
+              <div class="padding-vertical padding-small">
+                <div class="divider-horizontal"></div>
+              </div>
+              <div class="padding-vertical padding-small">
+                <div class="divider-horizontal"></div>
+              </div>
+              <div class="margin-bottom margin-xxsmall"></div>
+              <p>
+                ¿Necesitas ayuda? Contacta con nuestro equipo
+                <a href="#">soporte@quienpresta.com</a> •
+                <a href="#">+51 900 123 456</a>
+              </p>
+            </section>
+            }
+
+            <!-- MAIN UI (results / similar) -->
+            @if (!selected()) {
+            <section>
+              <!-- Dynamic header -->
+              <div class="form-title-wrap">
+                <h2 class="form-section-title-2">
+                  Encontramos opciones disponibles para ti
+                </h2>
+                <p class="form-paragraph-2">
+                  Analizamos tu perfil y encontramos las entidades que mejor se ajustan a ti.
+                </p>
+              </div>
+              <!-- VISTA: RESULTS -->
+              <section id="view-results" class="view-panel is-visible">
+                <div [ngClass]="colsClass()" class="offers-row">
+                  @for (o of topOffers(); track o) {
+                  <article class="card-offer" [class.is-featured]="o.resultado">
+                    @if (o.resultado) {
+                    <div class="feature-tag">Más recomendada</div>
+                    }
+                    <div class="co-header">
+                      <div class="co-badge">{{ o.codigoentidad }}</div>
+                      <div>
+                        <h4 class="co-title">{{ o.nombre }}</h4>
+                        <p class="co-sub">{{ o.descripcion || '' }}</p>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="co-amount">{{ o.monto }}</div>
+                      <p class="co-amount-sub">Monto disponible</p>
+                    </div>
+                    <div class="co-specs">
+                      <div class="co-spec"><span>Plazo:</span><strong>{{ o.plazo }}</strong></div>
+                      <div class="co-spec"><span>Tasa:</span><strong>{{ o.tasa }}</strong></div>
+                      <!-- <div class="co-spec"><span>Probabilidad:</span>
+                        <strong class="co-prob"> {{ o.probability }}</strong>
+                      </div> -->
+                    </div>
+                    <div class="co-actions">
+                      <button class="w-button" (click)="chooseOffer(o)">{{ o.resultado ? 'Elegir esta opción' :
+                        'Elegir esta opción' }}</button>
+                    </div>
+                  </article>
+                  }
+                </div>
+                <!-- MORE OPTIONS -->
+                <div class="more-wrapper">
+                  <div class="more-header one-button">
+                    <button class="slider-right button w-button" (click)="toggleMore()">
+                      {{ moreExpanded() ? 'Ver menos opciones' : 'Ver más opciones disponibles' }}
+                    </button>
+                  </div>
+                  <div class="more-grid" [class.is-expanded]="moreExpanded()">
+                    @for (m of moreOffers; track m) {
+                    <div class="card-mini">
+                      <div class="mini-top">
+                        <div class="mini-badge">{{ m.codigoentidad }}</div>
+                        <h5 class="mini-nombre">{{ m.nombre }}</h5>
+                      </div>
+                      <div class="mini-row"><span>Monto:</span><strong>{{ m.monto }}</strong></div>
+                      <div class="mini-row"><span>Plazo:</span><strong>{{ m.plazo }}</strong></div>
+                      <div class="mini-row"><span>Tasa:</span><strong>{{ m.tasa }}</strong></div>
+                      <!-- <div class="mini-row"><span>Probabilidad:</span><strong>{{ m.probability }}</strong></div> -->
+                      <div class="mini-actions">
+                        <button class="w-button" (click)="chooseOffer(m)">Elegir
+                          esta opción</button>
+                      </div>
+                    </div>
+                    }
+                  </div>
+                  <div class="actions-row">
+                    <button routerLink="/encontrar/cantidades" class="w-button secondary">Ajustar búsqueda</button>
+                  </div>
+                </div>
+              </section>
+            </section>
+            }
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

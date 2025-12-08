@@ -1,0 +1,48 @@
+<div class="w-slide">
+    <div class="slide-wrapper">
+        <div class="slide-content">
+            <div class="form-content">
+                <div class="form-title-wrap">
+                    <div class="form-section-title-2">Analizando tu solicitud</div>
+                    <p class="form-paragraph-2">Estamos comparando las mejores ofertas de múltiples entidades
+                        financieras.<br></p>
+                </div>
+                <div class="code-embed w-embed w-script">
+                    <div class="progress-wrapper">
+                        <!--  BARRA DE PROGRESO  -->
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" #progressBar></div>
+                        </div>
+                        <p id="progress-text" class="progress-text" #progressText></p>
+                        <!--  CARD DE EVALUACIÓN  -->
+                        <div id="evaluation-card" class="evaluation-card" #evaluationCard>
+                            <div class="evaluation-media">
+                                <div class="evaluation-logo-wrap">
+                                    <img id="evaluation-logo" class="evaluation-logo" src="" alt="Logo entidad"
+                                        #evaluationLogo>
+                                </div>
+                            </div>
+                            <div class="evaluation-body">
+                                <div class="evaluation-header">
+                                    <h4 id="evaluation-title" class="evaluation-title" #evaluationTitle>.</h4>
+                                </div>
+                                <!-- <p id="evaluation-status" class="status-title" #evaluationStatus>Verificando
+                                    documentación</p> -->
+                                <p id="evaluation-subtext" class="status-subtext" #evaluationSubtext></p>
+                            </div>
+                        </div>
+                        <!--  BOTÓN  -->
+                        @if (mostrarBoton) {
+                        <button id="show-results" routerLink="/encontrar/resultados"
+                            class="slider-right button w-button">
+                            Mostrar resultados
+                        </button>
+                        }
+                    </div>
+
+                </div>
+                <div class="button-wrap"></div>
+            </div>
+        </div>
+    </div>
+</div>

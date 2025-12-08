@@ -1,0 +1,51 @@
+<header data-copilot="true" class="section overflow_hidden is-accent-primary hero">
+    <div class="container is-small">
+        <div class="header is-align-center">
+            <h1 class="heading_h1">Compara entidades en Perú  y encuentra tu préstamo ideal</h1>
+            <p class="subheading">Analizamos tu perfil crediticio en segundos y seleccionamos las opciones que mejor se
+                adaptan a ti. Aplica y encuentra tus ofertas reales con alta probabilidad de aprobación.<br></p>
+            <div class="button-group is-align-center">
+                <a routerLink="/encontrar" data-w-id="2850a4be-2f91-16a1-ab24-f405b6df9587"
+                    class="button orange open-modal-button rem on-accent-primary">Encontrar mi prestamo ahora! </a>
+                <a href="#" class="button is-secondary on-accent-primary hide w-button">Más información</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="banks-showcase">
+        @if(publicidad && publicidad.data){
+        @if(publicidad.data.caja && publicidad.data.caja[3]){
+        <div class="phone phone-left-2" [ngStyle]="{'background-color': publicidad.data.caja[3].color}">
+            <img [src]="publicidad.data.caja[3].logo" alt="">
+        </div>
+        }
+        @if (publicidad.data.caja && publicidad.data.caja[1]){
+        <div class="phone phone-left-1" [ngStyle]="{'background-color': publicidad.data.caja[1].color}">
+            <img [src]="publicidad.data.caja[1].logo" alt="">
+        </div>
+        }
+        @if(publicidad.data.caja && publicidad.data.caja[0]){
+        <div class="phone phone-center" [ngStyle]="{'background-color': publicidad.data.caja[0].color}">
+            <img [src]="publicidad.data.caja[0].logo" alt="">
+        </div>
+        }
+        @if(publicidad.data.caja && publicidad.data.caja[2]){
+        <div class="phone phone-right-1" [ngStyle]="{'background-color': publicidad.data.caja[2].color}">
+            <img [src]="publicidad.data.caja[2].logo" alt="">
+        </div>
+        }
+        @if(publicidad.data.caja && publicidad.data.caja[4]){
+        <div class="phone phone-right-2" [ngStyle]="{'background-color': publicidad.data.caja[4].color}">
+            <img [src]="publicidad.data.caja[4].logo" alt="">
+        </div>
+        }
+        }
+
+    </div>
+
+    <!-- <div class="container is-max"><img class="image_cover" src="assets/images/Mask-group-1.png" width="Auto"
+            height="570" alt="[interface] image carousel of ai innovations for an ai healthcare company" sizes="100vw"
+            data-aisg-image-id="81b48fdc-5f19-4664-8e1b-50648af04b3e" loading="lazy"
+            srcset="assets/images/Mask-group-1-p-500.png 500w, assets/images/Mask-group-1-p-800.png 800w, assets/images/Mask-group-1-p-1080.png 1080w, assets/images/Mask-group-1.png 1418w">
+    </div> -->
+</header>

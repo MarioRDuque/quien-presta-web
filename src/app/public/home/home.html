@@ -1,0 +1,312 @@
+<app-slot [url]="publicidad.data?.banner_superior || null"></app-slot>
+
+<div class="nav is-accent-primary">
+    <div data-duration="400" data-animation="default" data-easing2="ease" data-easing="ease" data-collapse="medium"
+        role="banner" data-no-scroll="1" class="nav_container w-nav">
+        <div class="nav_left">
+            <a routerLink="/" aria-current="page" class="nav_logo w-inline-block w--current"><img
+                    src="assets/images/logo-3.svg" loading="lazy" width="220" height="Auto" alt=""></a>
+        </div>
+        <div class="nav_right">
+            <nav role="navigation" class="nav_menu w-nav-menu">
+                <ul role="list" class="nav_menu-list w-list-unstyled">
+                    <li class="nav_menu-list-item">
+                        <button (click)="irAComoFunciona()" class="nav_link on-accent-primary w-inline-block">
+                            <div>Como funciona</div>
+                        </button>
+                    </li>
+                    <li class="nav_menu-list-item">
+                        <button (click)="irAcomparaEntidades()" class="nav_link on-accent-primary w-inline-block">
+                            <div>Préstamos</div>
+                        </button>
+                    </li>
+                    <!-- <li class="nav_menu-list-item">
+                        <a href="#" class="nav_link on-accent-primary w-inline-block">
+                            <div>Seguros</div>
+                        </a>
+                    </li> -->
+                    <li class="nav_menu-list-item">
+                        <button (click)="irAcomparaYElige()" class="nav_link on-accent-primary w-inline-block">
+                            <div>Blog</div>
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+            <div class="button-group margin-top_none">
+                <button routerLink="/contactenos" class="button on-accent-primary hide_mobile w-inline-block">
+                    <div class="button_label">Contáctenos</div>
+                </button>
+            </div>
+        </div>
+        <div class="nav_mobile-menu-button w-nav-button">
+            <div class="icon on-accent-primary"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                    viewbox="0 0 24 24">
+                    <g class="nc-icon-wrapper" stroke-linecap="square" stroke-linejoin="miter" stroke-width="1.5"
+                        fill="none" stroke="currentColor" stroke-miterlimit="10">
+                        <line x1="1" y1="12" x2="23" y2="12" stroke="currentColor" class="line"></line>
+                        <line x1="1" y1="5" x2="23" y2="5"></line>
+                        <line x1="1" y1="19" x2="23" y2="19"></line>
+                    </g>
+                </svg></div>
+        </div>
+    </div>
+</div>
+
+<section #comparaentidades>
+    <app-header [publicidad]="publicidad"></app-header>
+</section>
+
+<app-sponsors></app-sponsors>
+
+<section class="section is-accent-primary" #comofunciona>
+    <div class="container">
+        <div class="header is-align-center">
+            <h2 class="heading_h2">Elige tu préstamo ideal en segundos</h2>
+        </div>
+        <div class="w-layout-grid grid_3-col gap-small">
+            <div class="card on-accent-primary">
+                <div class="card_body flex_vertical is-x-center">
+                    <div class="icon is-large margin-bottom_xsmall"><svg xmlns="http://www.w3.org/2000/svg" width="100%"
+                            height="100%" viewbox="0 0 24 24" fill="none">
+                            <path d="M6.75 18.25V4.75H13.5L17.25 8.5V18.25H6.75Z" stroke="currentColor"
+                                stroke-width="1.5" stroke-linejoin="round"></path>
+                        </svg></div>
+                    <h3 id="w-node-_1a189397-4910-1d5d-fe43-0e5231e3a6ae-31e3a69e"
+                        class="heading_h4 w-node-ae7b5558-647e-28d1-a200-cf7fe1b55a18-471766bd">Completa tu solicitud
+                    </h3>
+                    <p class="text-align_center margin-bottom_none">Ingresa tus datos personales y el monto que
+                        necesitas. El
+                        proceso es rápido y seguro.<br></p>
+                </div>
+            </div>
+            <div class="card on-accent-primary">
+                <div class="card_body flex_vertical is-x-center">
+                    <div class="icon is-large margin-bottom_xsmall"><svg xmlns="http://www.w3.org/2000/svg" width="100%"
+                            height="100%" viewbox="0 0 24 24" fill="none">
+                            <path
+                                d="M19 12C15.134 12 12 15.134 12 19C12 15.134 8.86599 12 5 12C8.86599 12 12 8.86599 12 5C12 8.86599 15.134 12 19 12Z"
+                                stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path>
+                            <path d="M8 16L5.5 18.5" stroke="currentColor" stroke-width="1.5"></path>
+                            <path d="M8 8L5.5 5.5" stroke="currentColor" stroke-width="1.5"></path>
+                            <path d="M16 16L18.5 18.5" stroke="currentColor" stroke-width="1.5"></path>
+                            <path d="M16 8L18.5 5.5" stroke="currentColor" stroke-width="1.5"></path>
+                        </svg></div>
+                    <h3 id="w-node-dd8b495c-cba3-0d39-1bec-72577eb2a5d3-31e3a69e"
+                        class="heading_h4 w-node-ae7b5558-647e-28d1-a200-cf7fe1b55a21-471766bd">Analizamos tu perfil
+                    </h3>
+                    <p class="text-align_center margin-bottom_none">Comparamos ofertas de múltiples entidades
+                        financieras para
+                        encontrar las mejores opciones.<br></p>
+                </div>
+            </div>
+            <div class="card on-accent-primary">
+                <div class="card_body flex_vertical is-x-center">
+                    <div class="icon is-large margin-bottom_xsmall"><svg width="100%" height="100%" viewbox="0 0 24 24"
+                            fill="none">
+                            <path
+                                d="M17.3654 5.32894C17.8831 5.54543 18.3534 5.86273 18.7495 6.26274C19.146 6.6625 19.4604 7.13723 19.675 7.65978C19.8895 8.18233 20 8.74246 20 9.30814C20 9.87384 19.8895 10.4339 19.675 10.9565C19.4604 11.4791 19.146 11.9538 18.7495 12.3535L12.0001 19L5.2496 12.3535C4.44951 11.5457 4 10.4501 4 9.3076C4 8.16516 4.44951 7.0695 5.2496 6.26166C6.04975 5.45384 7.13498 5 8.26647 5C9.39804 5 10.4833 5.45384 11.2833 6.26166L12.016 6.99843L12.7158 6.26274C13.112 5.86273 13.5823 5.54543 14.0999 5.32894C14.6176 5.11246 15.1724 5.00103 15.7327 5.00103C16.2929 5.00103 16.8478 5.11246 17.3654 5.32894Z"
+                                stroke-width="1.5" stroke-linejoin="round" stroke="currentColor"></path>
+                        </svg></div>
+                    <h3 id="w-node-_7c7c286c-95bd-c381-2eaf-005a0cefcb38-31e3a69e"
+                        class="heading_h4 w-node-ae7b5558-647e-28d1-a200-cf7fe1b55a2c-471766bd">Elige tu préstamo</h3>
+                    <p class="text-align_center margin-bottom_none">Revisa las opciones disponibles y selecciona la que
+                        mejor se
+                        adapte a tus necesidades.<br></p>
+                </div>
+            </div>
+        </div>
+        <div id="w-node-_1a189397-4910-1d5d-fe43-0e5231e3a70a-31e3a69e"
+            class="button-group is-align-center w-node-ae7b5558-647e-28d1-a200-cf7fe1b55a5a-471766bd">
+            <button routerLink="/encontrar" data-w-id="ae7b5558-647e-28d1-a200-cf7fe1b55a59"
+                class="button orange open-modal-button rem on-accent-primary">Comenzar ahora</button>
+        </div>
+    </div>
+</section>
+
+<app-slot [url]="publicidad.data?.banner_inferior || null" class="super" [inferior]="true"></app-slot>
+
+<section class="section is-secondary">
+    <div class="container">
+        <div class="w-layout-grid grid_5-col gap-small">
+            <div id="w-node-_8461aba3-9db1-1982-e741-fae1d6f0a8f7-47104630"
+                class="flex_horizontal flex_vertical is-x-center is-y-center text-align_center w-node-_781f202f-817a-7799-38a0-2ebbcd82dc74-471766bd">
+                <div class="heading_h2">{{indicadores.data?.datos}}</div>
+                <p class="paragraph_large text-color_secondary margin-bottom_none">Datos actualizados</p>
+            </div>
+            <div id="w-node-_8461aba3-9db1-1982-e741-fae1d6f0a8fc-47104630"
+                class="flex_horizontal flex_vertical is-y-center is-x-center text-align_center w-node-_781f202f-817a-7799-38a0-2ebbcd82dc7b-471766bd">
+                <div class="heading_h2">{{indicadores.data?.prestamos}}</div>
+                <p class="paragraph_large text-color_secondary margin-bottom_none">Préstamos comparados</p>
+            </div>
+            <div id="w-node-_8461aba3-9db1-1982-e741-fae1d6f0a901-47104630"
+                class="flex_horizontal flex_vertical is-y-center is-x-center text-align_center w-node-_781f202f-817a-7799-38a0-2ebbcd82dc84-471766bd">
+                <div class="heading_h2">{{indicadores.data?.evaluaciones}}</div>
+                <p class="paragraph_large text-color_secondary margin-bottom_none">Evaluación instantánea</p>
+            </div>
+            <div id="w-node-_8461aba3-9db1-1982-e741-fae1d6f0a906-47104630"
+                class="flex_horizontal flex_vertical is-x-center is-y-center text-align_center w-node-_781f202f-817a-7799-38a0-2ebbcd82dc8b-471766bd">
+                <div class="heading_h2">{{indicadores.data?.tasaaprobacion}}</div>
+                <p class="paragraph_large text-color_secondary margin-bottom_none">Mejor tasa de aprobación</p>
+            </div>
+            <div id="w-node-b95a7646-8686-e9ca-1ec6-e8a947104647-47104630"
+                class="flex_horizontal flex_vertical is-x-center is-y-center text-align_center w-node-_781f202f-817a-7799-38a0-2ebbcd82dc90-471766bd">
+                <div class="heading_h2">{{indicadores.data?.rechazos}}</div>
+                <p class="paragraph_large text-color_secondary margin-bottom_none">Menos rechazos</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section is-secondary hide-responsive">
+    <div class="container">
+        <div class="header">
+            <h2 class="heading_h2">Compara y elige tu mejor préstamo</h2>
+        </div>
+        <div class="w-layout-grid grid_3-col tablet-1-col gap-xsmall">
+            <div id="w-node-f9d7020e-9794-709c-dc5d-75f54d8075c9-67407b01"
+                class="card on-secondary w-node-cc9d73c3-00c9-b0c5-26c8-9e22ab1812d7-471766bd">
+                <div class="w-layout-grid grid_2-col height_100percent">
+                    <div class="card_body">
+                        <div class="icon margin-bottom_xsmall"><svg xmlns="http://www.w3.org/2000/svg" width="100%"
+                                height="100%" viewbox="0 0 24 24" fill="none">
+                                <path
+                                    d="M12.5 18.25C16.2279 18.25 19.25 15.2279 19.25 11.5C19.25 7.77208 16.2279 4.75 12.5 4.75C8.77208 4.75 5.75 7.77208 5.75 11.5C5.75 12.6007 6.01345 13.6398 6.48072 14.5578L5 19L9.71819 17.6519C10.5664 18.0361 11.5082 18.25 12.5 18.25Z"
+                                    stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path>
+                            </svg></div>
+                        <h3 id="w-node-f9d7020e-9794-709c-dc5d-75f54d8075ce-67407b01"
+                            class="heading_h4 w-node-cc9d73c3-00c9-b0c5-26c8-9e22ab1812d0-471766bd">Análisis inmediato
+                        </h3>
+                        <p class="paragraph_small margin-bottom_none">Revisamos tu perfil al instante y te mostramos
+                            solo opciones
+                            que puedes solicitar.</p>
+                    </div>
+                    <div id="w-node-cc9d73c3-00c9-b0c5-26c8-9e22ab1812d5-471766bd" class="overflow_clip"><img
+                            width="Auto" height="Auto" alt="{interface}"
+                            src="assets/images/9feb77b9-40b3-4e7e-96ce-298b27fce760.avif" loading="lazy"
+                            data-aisg-image-id="4e2ca007-23a1-4cd2-9e46-9f5010e93cae" class="img-bleed"></div>
+                </div>
+            </div>
+            <div class="card on-secondary">
+                <div class="card_body">
+                    <div class="ratio_anamorphic margin-bottom_small"><img width="213" height="89"
+                            alt="image of team discussion (for a hr tech)"
+                            src="assets/images/251a1bb3-7e9e-469c-89bb-f1cac64bc781.avif" loading="lazy"
+                            data-aisg-image-id="f733f4f9-4a9c-47e7-802b-67f8dd9e9d70" class="image_cover"></div>
+                    <div id="w-node-_63aea21b-2f8e-997d-88e2-174767407b1b-67407b01"
+                        class="w-node-cc9d73c3-00c9-b0c5-26c8-9e22ab1812e1-471766bd">
+                        <div class="icon margin-bottom_xsmall"><svg xmlns="http://www.w3.org/2000/svg" width="100%"
+                                height="100%" viewbox="0 0 24 24" fill="none">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M9.5 9C9.5 7.61929 10.6193 6.5 12 6.5C13.3807 6.5 14.5 7.61929 14.5 9C14.5 10.3807 13.3807 11.5 12 11.5C10.6193 11.5 9.5 10.3807 9.5 9ZM12 5C9.79086 5 8 6.79086 8 9C8 11.2091 9.79086 13 12 13C14.2091 13 16 11.2091 16 9C16 6.79086 14.2091 5 12 5ZM8.75 13.5C6.67893 13.5 5 15.1789 5 17.25V19H6.5V17.25C6.5 16.0074 7.50736 15 8.75 15H15.25C16.4926 15 17.5 16.0074 17.5 17.25V19H19V17.25C19 15.1789 17.3211 13.5 15.25 13.5H8.75Z"
+                                    fill="currentColor"></path>
+                            </svg></div>
+                        <h3 id="w-node-_63aea21b-2f8e-997d-88e2-174767407b1f-67407b01"
+                            class="heading_h4 w-node-cc9d73c3-00c9-b0c5-26c8-9e22ab1812de-471766bd">Comparación sencilla
+                        </h3>
+                        <p class="paragraph_small margin-bottom_none">Visualiza alternativas de varias entidades y
+                            selecciona la
+                            más conveniente.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card on-secondary">
+                <div class="card_body">
+                    <div class="ratio_anamorphic margin-bottom_small"><img width="213" height="146"
+                            alt="image of data visualization display (for a ai fintech company)"
+                            src="assets/images/db7b8f24-e05b-4743-86ef-5d03c1e6483f.avif" loading="lazy"
+                            data-aisg-image-id="feea66f9-da52-4e67-9b00-16bfcc467538" class="image_cover"></div>
+                    <div id="w-node-_7828c96e-5c35-d639-80c1-389ffa967b98-67407b01"
+                        class="w-node-cc9d73c3-00c9-b0c5-26c8-9e22ab1812ee-471766bd">
+                        <div class="icon margin-bottom_xsmall"><svg xmlns="http://www.w3.org/2000/svg" width="100%"
+                                height="100%" viewbox="0 0 24 24" fill="none">
+                                <path
+                                    d="M19.25 12C19.25 16.0041 16.0041 19.25 12 19.25C7.99594 19.25 4.75 16.0041 4.75 12C4.75 7.99594 7.99594 4.75 12 4.75C16.0041 4.75 19.25 7.99594 19.25 12Z"
+                                    stroke="currentColor" stroke-width="1.5"></path>
+                                <path d="M9 12L11 14L15.5 9.5" stroke="currentColor" stroke-width="1.5"></path>
+                            </svg></div>
+                        <h3 id="w-node-_7828c96e-5c35-d639-80c1-389ffa967b9a-67407b01"
+                            class="heading_h4 w-node-cc9d73c3-00c9-b0c5-26c8-9e22ab1812eb-471766bd">Probabilidad de
+                            aprobación</h3>
+                        <p class="paragraph_small margin-bottom_none">Descubre tus chances reales antes de postular, sin
+                            afectar
+                            tu score.</p>
+                    </div>
+                </div>
+            </div>
+            <div id="w-node-_63aea21b-2f8e-997d-88e2-174767407b07-67407b01"
+                class="card on-secondary w-node-cc9d73c3-00c9-b0c5-26c8-9e22ab181300-471766bd">
+                <div class="w-layout-grid grid_2-col height_100percent">
+                    <div class="card_body">
+                        <div class="icon margin-bottom_xsmall"><svg xmlns="http://www.w3.org/2000/svg" width="100%"
+                                height="100%" viewbox="0 0 24 24" fill="none">
+                                <path
+                                    d="M19 12C15.134 12 12 15.134 12 19C12 15.134 8.86599 12 5 12C8.86599 12 12 8.86599 12 5C12 8.86599 15.134 12 19 12Z"
+                                    stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path>
+                                <path d="M8 16L5.5 18.5" stroke="currentColor" stroke-width="1.5"></path>
+                                <path d="M8 8L5.5 5.5" stroke="currentColor" stroke-width="1.5"></path>
+                                <path d="M16 16L18.5 18.5" stroke="currentColor" stroke-width="1.5"></path>
+                                <path d="M16 8L18.5 5.5" stroke="currentColor" stroke-width="1.5"></path>
+                            </svg></div>
+                        <h3 id="w-node-_63aea21b-2f8e-997d-88e2-174767407b0f-67407b01"
+                            class="heading_h4 w-node-cc9d73c3-00c9-b0c5-26c8-9e22ab1812f9-471766bd">Transparencia total
+                        </h3>
+                        <p class="paragraph_small margin-bottom_none">Accede a detalles claros sobre tasas, plazos y
+                            requisitos
+                            para decidir mejor.</p>
+                    </div>
+                    <div class="overflow_clip"><img width="309" height="434"
+                            alt="image of a client consultation in a futuristic setting"
+                            src="assets/images/26cd5979-4b48-47f3-b14b-c23cb1f4463e.avif" loading="lazy"
+                            data-aisg-image-id="f44227bc-af89-40a2-aa25-ffba899ddede" class="image_cover"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section data-record-id="c45a549c-3890-45b0-0df7-d6f299e7489a" data-copilot="true" class="section hide-responsive"
+    #comparayelegie>
+    <div class="container">
+        <div class="header">
+            <h2 class="heading_h2 max-width_large">Compara préstamos, elige tu mejor opción</h2>
+        </div>
+        <div class="w-layout-grid grid_3-col gap-small">
+            <a href="#" class="content-block-link w-inline-block">
+                <div class="image-ratio_3x2 margin-bottom_xsmall"><img width="1216" height="832"
+                        alt="image of data visualization display (for a ai fintech company)"
+                        src="assets/images/54605f4b-0a16-473a-ac3a-6e225183f952.avif" loading="lazy"
+                        data-aisg-image-id="feea66f9-da52-4e67-9b00-16bfcc467538" class="image_cover"></div>
+                <h3 class="heading_h4">Préstamos personales</h3>
+                <div>Encuentra ofertas adaptadas a tu perfil.</div>
+            </a>
+            <a href="#" class="content-block-link w-inline-block">
+                <div class="image-ratio_3x2 margin-bottom_xsmall"><img width="1216" height="832"
+                        alt="image of a client consultation in a futuristic setting"
+                        src="assets/images/f86a4f58-e693-4872-9b6e-4ab8dbb9dcd5.avif" loading="lazy"
+                        data-aisg-image-id="f44227bc-af89-40a2-aa25-ffba899ddede" class="image_cover"></div>
+                <h3 class="heading_h4">Préstamos rápidos</h3>
+                <div>Respuestas en minutos, sin papeleos.</div>
+            </a>
+            <a href="#" class="content-block-link w-inline-block">
+                <div class="image-ratio_3x2 margin-bottom_xsmall"><img width="1216" height="832"
+                        alt="image of a collaborative real estate technology brainstorming session"
+                        src="assets/images/40f603d1-389e-4253-9abb-e7f9bc74eddc.avif" loading="lazy"
+                        data-aisg-image-id="d3bb2fb9-2d21-408d-9ef9-45da0d4e6c1e" class="image_cover"></div>
+                <h3 class="heading_h4">Préstamos para negocios</h3>
+                <div>Impulsa tu empresa con el crédito ideal.</div>
+            </a>
+            @if (false) {
+            <a href="#" class="content-block-link w-inline-block">
+                <div class="image-ratio_3x2 margin-bottom_xsmall"><img width="1216" height="832"
+                        alt="[background image] image of construction team meeting"
+                        src="assets/images/ed51ce00-abb7-4476-a6eb-4521e2b54a9d.avif" loading="lazy"
+                        data-aisg-image-id="5da0c3dd-8687-4aa8-a1f4-43719568a8d2" class="image_cover"></div>
+                <h3 class="heading_h4">Consolidación de deudas</h3>
+                <div>Simplifica tus pagos y ahorra intereses.</div>
+            </a>
+            }
+        </div>
+    </div>
+</section>
+
+<app-footer></app-footer>

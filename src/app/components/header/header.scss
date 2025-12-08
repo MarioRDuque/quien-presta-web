@@ -1,0 +1,51 @@
+.banks-showcase {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding-top: 40px;
+    gap: 0;
+    /* clave para pegar*/
+}
+
+.phone {
+    width: 220px;
+    transition: .3s;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    position: relative;
+}
+
+.phone img {
+    width: 100%;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    display: block;
+}
+
+/* Montaje progresivo */
+.phone:not(:first-child) {
+    margin-left: -40px;
+    /* superposición horizontal */
+}
+
+/* Imagen principal al centro */
+.phone-center {
+    transform: scale(1.25);
+    z-index: 5;
+}
+
+/* Los laterales inmediatos */
+.phone-left-1,
+.phone-right-1 {
+    transform: scale(1.05);
+    z-index: 4;
+}
+
+/* Los más extremos */
+.phone-left-2,
+.phone-right-2 {
+    transform: scale(0.9);
+    z-index: 3;
+    margin-bottom: -10px;
+}

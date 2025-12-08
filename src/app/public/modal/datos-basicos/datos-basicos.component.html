@@ -1,0 +1,45 @@
+<form class="w-slide" [formGroup]="form" (ngSubmit)="submit()">
+    <div class="slide-wrapper">
+        <div class="slide-content">
+            <div class="form-content">
+
+                <div class="form-title-wrap">
+                    <div class="form-section-title-2">Completa tus datos básicos</div>
+                    <p class="form-paragraph-2">
+                        Con esta información sabremos qué entidades pueden prestarte en Perú.<br>
+                    </p>
+                </div>
+
+                <div class="form-wrap extra-space">
+                    <!-- Tipo de documento -->
+                    <label for="field" class="field-label-2">Tipo de documento</label>
+                    <select id="field" formControlName="tipodocumento" class="text-field-2 w-select"
+                        (change)="onTypeChange()" appErrors>
+                        <option value="D">Documento Nacional de Identidad (DNI)</option>
+                        <option value="CE">Carné de Extranjería (CE)</option>
+                    </select>
+                    <!-- Número de documento -->
+                    <label for="Name" class="field-label-2">Número de documento</label>
+                    <input id="Name" formControlName="numerodocumento" class="text-field-2 w-input" type="text"
+                        placeholder="" [appDocumentLength]="form.value.tipodocumento" appErrors>
+                </div>
+
+                <!-- Botón -->
+                <div class="button-wrap">
+                    <button type="submit" class="slider-right button w-button">
+                        Continuar
+                    </button>
+                </div>
+
+                <div class="slide-counter">
+                    <div class="dot active-dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+
+                <app-row-info></app-row-info>
+
+            </div>
+        </div>
+    </div>
+</form>

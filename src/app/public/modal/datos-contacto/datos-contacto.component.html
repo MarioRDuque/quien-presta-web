@@ -1,0 +1,36 @@
+<form class="w-slide" [formGroup]="form" (ngSubmit)="submit()">
+    <div class="slide-wrapper">
+        <div class="slide-content">
+            <div class="form-content">
+                <div class="form-title-wrap">
+                    <div class="form-section-title-2">Completa tus datos de contacto</div>
+                    <p class="form-paragraph-2">
+                        Con esta información sabremos qué entidades pueden prestarte en Perú.<br></p>
+                </div>
+                <div class="form-wrap extra-space">
+                    <label for="Name" class="field-label-2">Nombres</label>
+                    <input class="text-field-2 w-input" maxlength="256" name="Name" data-name="Name"
+                        placeholder="eg. Sarah" type="text" id="Name" formControlName="nombresapellidos" appErrors>
+                    <label for="Email" class="field-label-2">Correo electrónico</label>
+                    <input class="text-field-2 w-input" maxlength="256" name="Email" data-name="Email"
+                        placeholder="juan.perez@ejemplo.com" type="email" id="Email" required=""
+                        formControlName="correoelectronico" appErrors>
+                    <label for="N-mero-de-tel-fono" class="field-label-2">Número de teléfono</label>
+                    <input class="text-field-2 w-input" maxlength="256" name="N-mero-de-tel-fono"
+                        data-name="Número de teléfono" placeholder="" type="tel" id="N-mero-de-tel-fono" required=""
+                        formControlName="telefono" appErrors>
+                </div>
+                <div class="button-wrap">
+                    <button type="submit" class="slider-right button w-button">Encontrar mi
+                        préstamo</button>
+                </div>
+                <div class="slide-counter">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot active-dot"></div>
+                </div>
+                <app-row-info></app-row-info>
+            </div>
+        </div>
+    </div>
+</form>

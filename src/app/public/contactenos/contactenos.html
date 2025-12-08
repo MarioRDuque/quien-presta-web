@@ -1,0 +1,57 @@
+<div class="modal">
+    <app-nav-modal></app-nav-modal>
+    <div class="modal-content">
+        <div class="form-full">
+            <div id="flowbaseSlider" class="form-wrapper w-form">
+                <div data-delay="4000" data-animation="outin" class="slider w-slider" data-autoplay="false"
+                    data-easing="ease-out" data-hide-arrows="true" data-disable-swipe="true" data-autoplay-limit="0"
+                    data-nav-spacing="3" data-duration="500" data-infinite="true">
+                    <div class="mask-2 w-slider-mask">
+                        <form class="w-slide" [formGroup]="form" (ngSubmit)="submit()">
+                            <div class="slide-wrapper">
+                                <div class="slide-content">
+                                    <div class="form-content">
+                                        <div class="form-title-wrap">
+                                            <div class="form-section-title-2">Completa tus datos de contacto</div>
+                                            <p class="form-paragraph-2">
+                                                Con esta información sabremos qué entidades pueden prestarte en
+                                                Perú.<br></p>
+                                        </div>
+                                        <div class="form-wrap extra-space">
+                                            <label for="Name" class="field-label-2">Nombres</label>
+                                            <input class="text-field-2 w-input" maxlength="256" name="Name"
+                                                data-name="Name" placeholder="eg. Sarah" type="text" id="Name"
+                                                formControlName="nombresapellidos" appErrors>
+                                            <label for="Email" class="field-label-2">Correo electrónico</label>
+                                            <input class="text-field-2 w-input" maxlength="256" name="Email"
+                                                data-name="Email" placeholder="juan.perez@ejemplo.com" type="email"
+                                                id="Email" required="" formControlName="correoelectronico" appErrors>
+                                            <label for="N-mero-de-tel-fono" class="field-label-2">Número de
+                                                teléfono</label>
+                                            <input class="text-field-2 w-input" maxlength="256"
+                                                name="N-mero-de-tel-fono" data-name="Número de teléfono" placeholder=""
+                                                type="tel" id="N-mero-de-tel-fono" required=""
+                                                formControlName="telefono" appErrors>
+                                            <label for="Mensaje" class="field-label-2">Mensaje</label>
+                                            <textarea class="text-field-2 w-input textarea-auto" maxlength="956"
+                                                name="Mensaje" data-name="Mensaje" placeholder="" type="text"
+                                                id="Mensaje" required="" formControlName="mensaje" appErrors></textarea>
+                                        </div>
+                                        <div class="button-wrap">
+                                            @if (!cargando) {
+                                            <button type="submit" class="slider-right button w-button">Enviar</button>
+                                            }
+                                            @else {
+                                            <button class="slider-right button w-button">Enviando</button>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,55 @@
+<form class="w-slide" [formGroup]="form" (ngSubmit)="registrar()">
+    <div class="slide-wrapper">
+        <div class="slide-content">
+            <div class="form-content">
+                <div class="form-title-wrap">
+                    <div class="form-section-title-2">Por favor selecciona monto y plazo
+                    </div>
+                    <p class="form-paragraph-2">Selecciona cuanto dinero necesitas y en
+                        cuanto tiempo puedes pagarlo.<br></p>
+                </div>
+                <div class="form-item-wrapper fixed-height">
+                    <input class="price-field w-input" maxlength="256" name="price" data-name="price" placeholder=""
+                        type="text" id="range_price" formControlName="precio" #rangePrice>
+                    <input class="price-field w-input" maxlength="256" name="Date" data-name="Date" placeholder=""
+                        type="text" id="range_date" formControlName="tiempo" #rangeDate>
+                </div>
+                <div class="div-block text resumen">
+                    <div class="resumen-title"><strong>TU SELECCIÓN</strong></div>
+                    <div class="w-layout-grid grid">
+                        <div id="w-node-_6206a5ca-c434-817f-a21c-ce9491cdb48b-472c3234" class="resumen-h">
+                            <strong>Monto a solicitar</strong>
+                        </div>
+                        <div id="w-node-_9ef1890a-fec2-8b33-acb4-126f800f2ecb-472c3234" class="resumen-h">
+                            <strong>Plazo en el que lo pagarás</strong>
+                        </div>
+                        <div id="val-amount"
+                            class="resumen-number w-node-_88539816-88a0-7b48-b8d4-04595afdfd95-472c3234">
+                            <strong>-</strong>
+                        </div>
+                        <div id="val-term" class="resumen-number w-node-_3c38bff6-45ec-3f50-a75a-d104fd1a3409-472c3234">
+                            <strong>-</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="button-wrap">
+                    <a routerLink="/encontrar" class="slider-left w-inline-block"><img alt=""
+                            src="https://cdn.prod.website-files.com/68e85b6c1e44479a0e6dd521/68e85b6d1e44479a0e6dd589_arrow.svg"
+                            class="arrow"></a>
+                    @if (!cargando) {
+                    <button type="submit" class="slider-right button w-button">Continuar</button>
+                    } @else {
+                    <a class="slider-right button w-button">Procesando</a>
+                    }
+                </div>
+                <div class="slide-counter">
+                    <div class="dot"></div>
+                    <div class="dot active-dot"></div>
+                    <div class="dot"></div>
+                </div>
+                <app-row-info></app-row-info>
+            </div>
+            <div class="help-block"></div>
+        </div>
+    </div>
+</form>
