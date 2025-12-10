@@ -155,7 +155,7 @@ export class Resultados implements OnInit, OnDestroy {
   }
 
   postToExternal() {
-    const token = this.selected()?.informacion || '';
+    const datos = this.selected()?.informacion || '';
 
     const form = document.createElement('form');
     form.method = "POST";
@@ -164,12 +164,30 @@ export class Resultados implements OnInit, OnDestroy {
 
     const input = document.createElement('input');
     input.type = "hidden";
-    input.name = "token";
-    input.value = token;
-
+    input.name = "datos";
+    input.value = datos;
     form.appendChild(input);
+
+    const procesoid = document.createElement('input');
+    procesoid.type = "hidden";
+    procesoid.name = "procesoid"; // nombre que esperan
+    procesoid.value = this.formDataSrv.processId() || "";
+    form.appendChild(procesoid);
+
+    const entidadid = document.createElement('input');
+    entidadid.type = "hidden";
+    entidadid.name = "entidadid"; // nombre que esperan
+    entidadid.value = this.selected()?.id || "";
+    form.appendChild(entidadid);
+
     document.body.appendChild(form);
-    form.submit();
+
+    const button = document.createElement('button');
+    button.type = 'submit';
+    button.style.display = 'none';
+    form.appendChild(button);
+
+    button.click();  // Esto sí se permite como user gesture
     form.remove();
   }
 
