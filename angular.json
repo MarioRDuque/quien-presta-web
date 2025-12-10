@@ -37,8 +37,7 @@
               "src/assets/js/webflow.js",
               "src/assets/js/range-slider-init.js",
               "src/assets/js/cerrar-modal.js"
-            ],
-            "server": "src/main.server.ts"
+            ]
           },
           "configurations": {
             "production": {
