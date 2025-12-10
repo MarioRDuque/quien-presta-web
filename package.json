@@ -7,7 +7,6 @@
     "build": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:quien-presta-web": "node dist/quien-presta-web/server/server.mjs",
     "lint": "ng lint"
   },
   "prettier": {
@@ -31,7 +30,6 @@
     "@angular/platform-browser": "^20.3.0",
     "@angular/platform-server": "^20.3.0",
     "@angular/router": "^20.3.0",
-    "@angular/ssr": "^20.3.8",
     "express": "^5.1.0",
     "ion-rangeslider": "^2.3.1",
     "jquery": "^3.7.1",
