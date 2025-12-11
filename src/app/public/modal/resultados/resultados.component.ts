@@ -28,6 +28,9 @@ export class Resultados implements OnInit, OnDestroy {
   public MAS_RESULTS: Oferta[] = [];
   public SIMILAR: Oferta[] = [];
 
+  private externalWin: Window | null = null;
+  private externalWinName = `extWindow-${Math.random().toString(36).slice(2, 9)}`;
+
   // --- UI state (signals) ---
   moreExpanded = signal(false);
   cargando = false;
@@ -62,7 +65,9 @@ export class Resultados implements OnInit, OnDestroy {
     this.mq.addEventListener('change', this.resizeHandler);
     this.resultados = this.formDataSrv.resultados();
     if (this.resultados && this.resultados.data) {
-      const resultadosOrdenadorPorPrioridad: Oferta[] = this.resultados?.data?.resultados.sort((a, b) => a.prioridad - b.prioridad);
+      const resultadosOrdenadorPorPrioridad: Oferta[] = (this.resultados?.data?.resultados ?? [])
+        .filter(o => o.resultado)
+        .sort((a, b) => b.prioridad - a.prioridad);
       if (resultadosOrdenadorPorPrioridad) {
         if (resultadosOrdenadorPorPrioridad.length > 3) {
           this.TOP3 = resultadosOrdenadorPorPrioridad.slice(0, 3);
@@ -130,6 +135,7 @@ export class Resultados implements OnInit, OnDestroy {
   notificar() {
     this.cargando = true;
     if (this.selected()) {
+      this.openPendingWindow();
       this.http.get(`resultados/notificar/${this.formDataSrv.processId()}/` + this.selected()?.id)
         .subscribe({
           next: (resp) => this.despuesDeNotificar(resp),
@@ -154,34 +160,107 @@ export class Resultados implements OnInit, OnDestroy {
     }
   }
 
-  postToExternal() {
-    const url = this.selected()?.url || "";
-    const newWindow = window.open(url, "_blank");
+  openPendingWindow() {
+    this.externalWin = window.open('about:blank', this.externalWinName);
+    if (!this.externalWin) {
+      alert('Por favor habilita ventanas emergentes (popups) para continuar.');
+    }
+  }
 
-    if (!newWindow) {
-      alert("Habilita las ventanas emergentes.");
+  postToExternal() {
+    const win = this.externalWin;
+    const name = this.externalWinName;
+    const url = this.selected()?.url || '';
+    const datos = this.selected()?.informacion || '';
+    const procesoid = this.formDataSrv.processId() || '';
+    const entidadid = this.selected()?.id || '';
+    
+    if (!win) {
+      alert('No se pudo abrir la ventana de destino. Habilita popups e inténtalo de nuevo.');
       return;
     }
+    const html = `
+    <html>
+      <body onload="document.forms[0].submit()">
+        <form method="POST" action="${this.escapeHtml(url)}">
+          <input type="hidden" name="datos" value="${this.escapeHtml(datos)}" />
+          <input type="hidden" name="procesoid" value="${this.escapeHtml(procesoid)}" />
+          <input type="hidden" name="entidadid" value="${this.escapeHtml(entidadid)}" />
+        </form>
+      </body>
+    </html>
+  `;
+    // --- INTENTO A: escribir directamente en la ventana (funciona en muchos casos) ---
+    try {
+      // algunos navegadores permiten esto; si falla, cae al catch
+      win.document.open();
+      win.document.write(html);
+      win.document.close();
+      this.externalWin = null;
+      return;
+    } catch (err) {
+      console.warn('write to new window failed, will try submit-target fallback', err);
+    }
+    // --- INTENTO B: crear form en la ventana padre con target = nombre de la ventana abierta ---
+    try {
+      const form = document.createElement('form');
+      form.method = 'POST';
+      form.action = url;
+      form.target = name; // <- el truco: target al nombre de la ventana que abrimos en el click
+      const addField = (n: string, v: string) => {
+        const i = document.createElement('input');
+        i.type = 'hidden';
+        i.name = n;
+        i.value = v;
+        form.appendChild(i);
+      };
+      addField('datos', datos);
+      addField('procesoid', procesoid);
+      addField('entidadid', entidadid);
+      document.body.appendChild(form);
 
-    // Ahora sí creas y envías el formulario dentro de la nueva ventana
-    const form = newWindow.document.createElement('form');
-    form.method = "POST";
-    form.action = url;
+      const btn = document.createElement('button');
+      btn.type = 'submit';
+      btn.style.display = 'none';
+      form.appendChild(btn);
+      btn.click();
+      setTimeout(() => {
+        form.remove();
+      }, 1000);
 
-    const addField = (name: string, value: string) => {
-      const input = newWindow.document.createElement('input');
-      input.type = "hidden";
-      input.name = name;
-      input.value = value;
-      form.appendChild(input);
-    };
+      this.externalWin = null;
+      return;
+    } catch (err) {
+      console.warn('fallback submit-to-named-window failed', err);
+    }
 
-    addField("datos", this.selected()?.informacion || "");
-    addField("procesoid", this.formDataSrv.processId() || "");
-    addField("entidadid", this.selected()?.id || "");
+    // --- INTENTO C: fallback final: abrir en la misma ventana (si aceptable) ---
+    try {
+      const tempForm = document.createElement('form');
+      tempForm.method = 'POST';
+      tempForm.action = url;
 
-    newWindow.document.body.appendChild(form);
-    form.submit();
+      const add = (n: string, v: string) => {
+        const i = document.createElement('input');
+        i.type = 'hidden';
+        i.name = n;
+        i.value = v;
+        tempForm.appendChild(i);
+      };
+      add('datos', datos); add('procesoid', procesoid); add('entidadid', entidadid);
+
+      document.body.appendChild(tempForm);
+      tempForm.submit();
+    } catch (err) {
+      console.error('all attempts failed', err);
+      alert('No fue posible abrir la página de la entidad. Revisa tu navegador y habilita ventanas emergentes.');
+    }
+  }
+
+  escapeHtml(s: string) {
+    return (s || '').replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#039;');
   }
 
   atraparErrores(err: HttpErrorResponse) {
