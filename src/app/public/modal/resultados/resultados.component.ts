@@ -155,40 +155,33 @@ export class Resultados implements OnInit, OnDestroy {
   }
 
   postToExternal() {
-    const datos = this.selected()?.informacion || '';
+    const url = this.selected()?.url || "";
+    const newWindow = window.open(url, "_blank");
 
-    const form = document.createElement('form');
+    if (!newWindow) {
+      alert("Habilita las ventanas emergentes.");
+      return;
+    }
+
+    // Ahora sí creas y envías el formulario dentro de la nueva ventana
+    const form = newWindow.document.createElement('form');
     form.method = "POST";
-    form.action = this.selected()?.url || "";
-    form.target = '_blank';
+    form.action = url;
 
-    const input = document.createElement('input');
-    input.type = "hidden";
-    input.name = "datos";
-    input.value = datos;
-    form.appendChild(input);
+    const addField = (name: string, value: string) => {
+      const input = newWindow.document.createElement('input');
+      input.type = "hidden";
+      input.name = name;
+      input.value = value;
+      form.appendChild(input);
+    };
 
-    const procesoid = document.createElement('input');
-    procesoid.type = "hidden";
-    procesoid.name = "procesoid"; // nombre que esperan
-    procesoid.value = this.formDataSrv.processId() || "";
-    form.appendChild(procesoid);
+    addField("datos", this.selected()?.informacion || "");
+    addField("procesoid", this.formDataSrv.processId() || "");
+    addField("entidadid", this.selected()?.id || "");
 
-    const entidadid = document.createElement('input');
-    entidadid.type = "hidden";
-    entidadid.name = "entidadid"; // nombre que esperan
-    entidadid.value = this.selected()?.id || "";
-    form.appendChild(entidadid);
-
-    document.body.appendChild(form);
-
-    const button = document.createElement('button');
-    button.type = 'submit';
-    button.style.display = 'none';
-    form.appendChild(button);
-
-    button.click();  // Esto sí se permite como user gesture
-    form.remove();
+    newWindow.document.body.appendChild(form);
+    form.submit();
   }
 
   atraparErrores(err: HttpErrorResponse) {
